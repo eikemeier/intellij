@@ -318,6 +318,16 @@ java_library(
 )
 
 java_library(
+     name = "failureaccess",
+     testonly = True,
+     exports = select_from_plugin_api_directory(
+         android_studio = [":failureaccess"],
+         clion = [":failureaccess"],
+         intellij = [":failureaccess"],
+     ),
+ )
+
+java_library(
     name = "guava_for_external_binaries",
     visibility = ["//aspect/tools:__pkg__"],
     exports = select_from_plugin_api_directory(
@@ -326,6 +336,16 @@ java_library(
         intellij = [":guava"],
     ),
 )
+
+java_library(
+     name = "failureaccess_for_external_binaries",
+     visibility = ["//aspect/tools:__pkg__"],
+     exports = select_from_plugin_api_directory(
+         android_studio = [":failureaccess"],
+         clion = [":failureaccess"],
+         intellij = [":failureaccess"],
+     ),
+ )
 
 # Some versions of the IDE include jsr305.jar, but others don't. So we need to include the JSR 305
 # classes (@Nullable, etc.) in the plugin jars for IDEs that don't already have it on the classpath.
